@@ -127,3 +127,9 @@ def revoke_token():
 def api_me():
     user = current_token.user
     return jsonify(id=user.id, username=user.username)
+
+@bp.route('/api/user')
+@require_oauth('profile')
+def api_email():
+    profile  = {'email': ['user@example.com'] }
+    return jsonify(profile)
